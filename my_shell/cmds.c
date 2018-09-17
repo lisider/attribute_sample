@@ -15,7 +15,7 @@
 //struct cmd  hello  __attribute__((section("function_ptrs")))  = {
 
 
-void help_fun(void){
+CMD(help){
 
     struct cmd *p = NULL;
     char * tmp = NULL;
@@ -33,14 +33,10 @@ void help_fun(void){
     if(p >= &__initcall_end)
         printf("total : %d\n",count);
 }
-struct cmd  help_count  __attribute__((section("data_ptrs"))) = {
-    "help",
-    help_fun,
-};
 
 
 
-void ct_fun(void){
+CMD(ct){
 
     struct cmd *p = NULL;
     char * tmp = NULL;
@@ -57,31 +53,19 @@ void ct_fun(void){
     if(p >= &__initcall_end)
         printf("%d\n",count);
 }
-struct cmd  cmd_count  __attribute__((section("data_ptrs"))) = {
-    "ct",
-    ct_fun,
-};
 
 
 
 
-void quit_fun(void){
+CMD(quit){
     exit(0);
 }
-struct cmd  quit  __attribute__((section("data_ptrs"))) = {
-    "quit",
-    quit_fun,
-};
 
 
 
 //-------------------------------------------------------------
 
 
-void new_fun(void){
+CMD(new){
     printf("%s\n",__func__);
 }
-struct cmd  new  __attribute__((section("data_ptrs"))) = {
-    "new",
-    new_fun,
-};

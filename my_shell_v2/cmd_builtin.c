@@ -62,6 +62,20 @@ CMD(quit){
 }
 
 
+CMD(wr32){
+    if (argc != 3) return ;
+    unsigned long long virt_addr = strtoull(argv[1],NULL,16);
+    unsigned int value = strtoul(argv[2],NULL,16);
+    *((volatile unsigned int *)virt_addr) = value;
+    printf("W 0X%016llX:0X%08X\n",virt_addr,value);
+}
+
+CMD(rd32){
+    if (argc != 2) return ;
+    unsigned long long virt_addr = strtoull(argv[1],NULL,16);
+    printf("R 0X%016llX:0X%08X\n",virt_addr,*((volatile unsigned int *)virt_addr));
+}
+
 
 //-------------------------------------------------------------
 

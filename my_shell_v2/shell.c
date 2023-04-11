@@ -55,6 +55,7 @@ int main(void)
 {
     char *sp,*next,*before;
     int argc = 0;
+    int ret = 0;
     char argv[ARGC_MAX][ARGV_LEN_MAX]={0};
     printf (INTRO);
     while (1) {
@@ -80,7 +81,8 @@ int main(void)
                 break;
         }
 
-        parse(argv[0])(argc,argv);
+        ret = parse(argv[0])(argc,argv);
+        printf("result:%d\n",ret);
 
     }
     return 0;

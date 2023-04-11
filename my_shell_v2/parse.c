@@ -10,8 +10,9 @@
 #include "cmd.h"
 
 
-void not_find(int argc, argv_t * argv){
+int not_find(int argc, argv_t * argv){
     printf("%s: command not found\n",argv[0]);
+    return -1;
 }
 
 

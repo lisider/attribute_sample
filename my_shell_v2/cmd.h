@@ -14,7 +14,7 @@ typedef char argv_t[ARGV_LEN_MAX];
 
 extern struct cmd __cmd_start, __cmd_end;
 
-typedef void(*fun_t)(int argc, argv_t * argv);
+typedef int(*fun_t)(int argc, argv_t * argv);
 
 struct cmd{
     char name[16];
@@ -25,11 +25,11 @@ struct cmd{
 #define FUN_NAME(name) name##_fun
 
 #define CMD(name) \
-    static void FUN_NAME(name)(int argc, argv_t * argv);\
+    static int FUN_NAME(name)(int argc, argv_t * argv);\
     static struct cmd name __attribute__((section("dcmd"))) = {\
         TO_STRING(name),\
         FUN_NAME(name),\
     };\
-   static void FUN_NAME(name)(int argc, argv_t * argv)
+   static int FUN_NAME(name)(int argc, argv_t * argv)
 
 #endif
